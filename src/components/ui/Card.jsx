@@ -6,7 +6,7 @@ function Card({ children, elevation = 1, className, ...props }) {
   return (
     <Paper
       elevation={elevation}
-      sx={{ display: "flex", flexDirection: "column", gap: 2, borderRadius: 2 }}
+      sx={{display: "flex", flexDirection: "column", gap: 2, borderRadius: 2 }}
       className={className}
       {...props}
     >
@@ -19,7 +19,7 @@ function Card({ children, elevation = 1, className, ...props }) {
 function CardHeader({ children, className, ...props }) {
   return (
     <Box
-      sx={{ display: "grid", gap: 1, px: 3, pt: 3 }}
+      sx={{ display: "grid", gap: 1, px: 3, pt: 4 }}
       className={className}
       {...props}
     >
@@ -43,6 +43,7 @@ function CardDescription({ children, className, ...props }) {
     <Typography
       variant="body2"
       color="text.secondary"
+       sx={{  pb: 4 }}
       className={className}
       {...props}
     >

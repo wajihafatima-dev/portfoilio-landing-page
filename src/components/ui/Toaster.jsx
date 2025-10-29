@@ -1,8 +1,7 @@
 "use client";
 
 import React from "react";
-import { Snackbar, Alert } from "@mui/material";
-import { useTheme } from "next-themes";
+import { Snackbar, Alert, useTheme } from "@mui/material";
 
 export default function Toaster({ open, message, severity = "info", onClose }) {
   const { theme } = useTheme();

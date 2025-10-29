@@ -1,6 +1,9 @@
-import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
-import { Button } from './ui/button';
+"use client";
+import React, { useState } from "react";
+import { Menu, X } from "lucide-react";
+import { Box, Typography, IconButton, Divider } from "@mui/material";
+import { Button } from "./ui/Button";
+import { Drawer } from "./ui/Drawer";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -8,109 +11,150 @@ export function Header() {
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
       setIsMenuOpen(false);
     }
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
-      <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
-        
+    <Box
+      component="header"
+      sx={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 1200,
+        bgcolor: "rgba(255, 255, 255, 0.8)",
+        backdropFilter: "blur(12px)",
+        borderBottom: "1px solid #e5e7eb",
+      }}
+    >
+      {/* Navbar */}
+      <Box
+        sx={{
+          maxWidth: "1200px",
+          mx: "auto",
+          px: 2,
+          py: 2,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
         {/* Logo */}
-        <div className="flex items-center">
-          <a href="#" className="text-emerald-600 flex items-center gap-2">
-            <div className="w-10 h-10 bg-emerald-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-semibold">YN</span>
-            </div>
-          </a>
-        </div>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: 1,
+            color: "primary.main",
+            cursor: "pointer",
+          }}
+        >
+          <Box
+            sx={{
+              width: 40,
+              height: 40,
+              bgcolor: "primary.main",
+              borderRadius: 2,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Typography sx={{ color: "#fff", fontWeight: 600 }}>YN</Typography>
+          </Box>
+        </Box>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8">
-          <button
-            onClick={() => scrollToSection('home')}
-            className="text-gray-700 hover:text-emerald-600 transition-colors"
-          >
-            Home
-          </button>
-          <button
-            onClick={() => scrollToSection('about')}
-            className="text-gray-700 hover:text-emerald-600 transition-colors"
-          >
-            About
-          </button>
-          <button
-            onClick={() => scrollToSection('portfolio')}
-            className="text-gray-700 hover:text-emerald-600 transition-colors"
-          >
-            Portfolio
-          </button>
-          <button
-            onClick={() => scrollToSection('contact')}
-            className="text-gray-700 hover:text-emerald-600 transition-colors"
-          >
-            Contact
-          </button>
-        </div>
+        <Box
+          sx={{
+            display: { xs: "none", md: "flex" },
+            alignItems: "center",
+            gap: 4,
+          }}
+        >
+          {["home", "about", "portfolio", "contact"].map((item) => (
+            <Typography
+              key={item}
+              onClick={() => scrollToSection(item)}
+              sx={{
+                color: "#374151",
+                fontWeight: 500,
+                cursor: "pointer",
+                transition: "color 0.2s",
+                "&:hover": { color: "primary.main" },
+              }}
+            >
+              {item.charAt(0).toUpperCase() + item.slice(1)}
+            </Typography>
+          ))}
+        </Box>
 
-        {/* CTA Button (Desktop) */}
-        <div className="hidden md:block">
+        {/* CTA Button */}
+        <Box sx={{ display: { xs: "none", md: "block" } }}>
           <Button
-            onClick={() => scrollToSection('contact')}
-            className="bg-emerald-600 hover:bg-emerald-700 text-white"
+            onClick={() => scrollToSection("contact")}
+            className="bg-emerald-600 hover:bg-emerald-700"
           >
             Hire Me
           </Button>
-        </div>
+        </Box>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-gray-700"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Toggle menu"
+        {/* Mobile Menu Toggle */}
+        <IconButton
+          sx={{ display: { xs: "flex", md: "none" }, color: "#374151" }}
+          onClick={() => setIsMenuOpen(true)}
         >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </nav>
+          <Menu size={24} />
+        </IconButton>
+      </Box>
 
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-200">
-          <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
-            <button
-              onClick={() => scrollToSection('home')}
-              className="text-gray-700 hover:text-emerald-600 transition-colors text-left py-2"
+      {/* Mobile Drawer */}
+      <Drawer
+        anchor="center"
+        open={isMenuOpen}
+        onClose={() => setIsMenuOpen(false)}
+        PaperProps={{
+          sx: {
+            width: "75%",
+            maxWidth: 280,
+            bgcolor: "#fff",
+            p: 2,
+          },
+        }}
+      >
+        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+          <IconButton onClick={() => setIsMenuOpen(false)}>
+            <X size={22} />
+          </IconButton>
+        </Box>
+        <Divider sx={{ my: 2 }} />
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+          {["home", "about", "portfolio", "contact"].map((item) => (
+            <Typography
+              key={item}
+              onClick={() => scrollToSection(item)}
+              sx={{
+                py: 1,
+                color: "#374151",
+                fontWeight: 500,
+                cursor: "pointer",
+                "&:hover": { color: "primary.main" },
+              }}
             >
-              Home
-            </button>
-            <button
-              onClick={() => scrollToSection('about')}
-              className="text-gray-700 hover:text-emerald-600 transition-colors text-left py-2"
-            >
-              About
-            </button>
-            <button
-              onClick={() => scrollToSection('portfolio')}
-              className="text-gray-700 hover:text-emerald-600 transition-colors text-left py-2"
-            >
-              Portfolio
-            </button>
-            <button
-              onClick={() => scrollToSection('contact')}
-              className="text-gray-700 hover:text-emerald-600 transition-colors text-left py-2"
-            >
-              Contact
-            </button>
-            <Button
-              onClick={() => scrollToSection('contact')}
-              className="bg-emerald-600 hover:bg-emerald-700 w-full text-white"
-            >
-              Hire Me
-            </Button>
-          </div>
-        </div>
-      )}
-    </header>
+              {item.charAt(0).toUpperCase() + item.slice(1)}
+            </Typography>
+          ))}
+
+          <Button
+            onClick={() => scrollToSection("contact")}
+            className="bg-emerald-600 hover:bg-emerald-700 w-full"
+          >
+            Hire Me
+          </Button>
+        </Box>
+      </Drawer>
+    </Box>
   );
 }

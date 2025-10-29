@@ -17,7 +17,11 @@ export const Form = FormProvider;
 export function FormField({ name, control, children, ...props }) {
   return (
     <FormFieldContext.Provider value={{ name }}>
-      <Controller name={name} control={control} {...props} render={children} />
+      <Controller
+        name="name"
+        control={control}
+        render={({ field }) => <input {...field} />}
+      />
     </FormFieldContext.Provider>
   );
 }
@@ -47,7 +51,12 @@ export function FormItem({ children, ...props }) {
 export function FormLabel({ children, ...props }) {
   const { error, name } = useFormField();
   return (
-    <InputLabel htmlFor={name} error={!!error} data-slot="form-label" {...props}>
+    <InputLabel
+      htmlFor={name}
+      error={!!error}
+      data-slot="form-label"
+      {...props}
+    >
       {children}
     </InputLabel>
   );
