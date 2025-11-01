@@ -7,7 +7,6 @@ import { Drawer } from "./ui/Drawer";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -30,7 +29,6 @@ export function Header() {
         borderBottom: "1px solid #e5e7eb",
       }}
     >
-      {/* Navbar */}
       <Box
         sx={{
           maxWidth: "1200px",
@@ -42,29 +40,52 @@ export function Header() {
           justifyContent: "space-between",
         }}
       >
-        {/* Logo */}
         <Box
           sx={{
             display: "flex",
             alignItems: "center",
-            gap: 1,
-            color: "primary.main",
+            gap: 1.5,
             cursor: "pointer",
           }}
         >
           <Box
             sx={{
-              width: 40,
-              height: 40,
-              bgcolor: "primary.main",
-              borderRadius: 2,
+              width: 44,
+              height: 44,
+              borderRadius: "12px",
+              background: (theme) =>
+                `linear-gradient(135deg, ${theme.palette.primary.main}, ${theme.palette.primary.light})`,
+              boxShadow: (theme) =>
+                `0 4px 10px ${theme.palette.primary.main}66`,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
             }}
           >
-            <Typography sx={{ color: "#fff", fontWeight: 600 }}>YN</Typography>
+            <Typography
+              sx={{
+                color: "#fff",
+                fontWeight: 700,
+                fontSize: 16,
+                letterSpacing: 0.5,
+              }}
+            >
+              W
+            </Typography>
           </Box>
+
+          <Typography
+            variant="h6"
+            sx={{
+              fontWeight: 700,
+              background: (theme) =>
+                `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.primary.light})`,
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
+          >
+            Wajiha<span style={{ fontWeight: 400 }}>Dev</span>
+          </Typography>
         </Box>
 
         <Box
@@ -74,7 +95,7 @@ export function Header() {
             gap: 4,
           }}
         >
-          {["home", "about", "portfolio", "contact"].map((item) => (
+          {["home", "about", "portfolio", "services", "contact"].map((item) => (
             <Typography
               key={item}
               onClick={() => scrollToSection(item)}
@@ -90,8 +111,6 @@ export function Header() {
             </Typography>
           ))}
         </Box>
-
-        {/* CTA Button */}
         <Box sx={{ display: { xs: "none", md: "block" } }}>
           <Button
             onClick={() => scrollToSection("contact")}
@@ -100,8 +119,6 @@ export function Header() {
             Hire Me
           </Button>
         </Box>
-
-        {/* Mobile Menu Toggle */}
         <IconButton
           sx={{ display: { xs: "flex", md: "none" }, color: "#374151" }}
           onClick={() => setIsMenuOpen(true)}
@@ -109,8 +126,6 @@ export function Header() {
           <Menu size={24} />
         </IconButton>
       </Box>
-
-      {/* Mobile Drawer */}
       <Drawer
         anchor="center"
         open={isMenuOpen}

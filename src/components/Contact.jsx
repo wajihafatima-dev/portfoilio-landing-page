@@ -26,7 +26,6 @@ export default function Contact() {
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
 
-  // ✅ Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -38,8 +37,6 @@ export default function Contact() {
       });
       return;
     }
-
-    // Simulate success
     setToast({
       open: true,
       message: "Message sent successfully! I'll get back to you soon.",
@@ -53,7 +50,7 @@ export default function Contact() {
   };
 
   return (
-    <Box id="contact" sx={{ py: { xs: 8, md: 12 }, bgcolor: "#fff" }}>
+    <Box id="contact" sx={{ py: { xs: 8, md: 12 } }}>
       <Box sx={{ textAlign: "center", mb: { xs: 6, md: 10 }, px: 2 }}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -86,12 +83,18 @@ export default function Contact() {
       {/* Main Grid */}
       <Grid
         container
-        spacing={6}
+        spacing={{ xs: 1, md: 4}}
         justifyContent="center"
-        sx={{ px: { xs: 2, sm: 4, md: 10 } }}
+        sx={{
+          flexWrap: "wrap",
+          mx: "auto",
+          maxWidth: "1000px",
+          pb: 2,
+          px: { xs: 2, md: 4, lg: 0 },
+        }}
       >
         {/* Contact Info */}
-        <Grid item xs={12} md={5}>
+        <Grid size={{xs:12,sm:12,md:6}} sx={{display:"flex",justifyContent:"center",}}>
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -186,7 +189,7 @@ export default function Contact() {
         </Grid>
 
         {/* Contact Form */}
-        <Grid item xs={12} md={7}>
+        <Grid size={{xs:12,sm:12,md:6}} sx={{mt:{xs:3,md:0}}}>
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}

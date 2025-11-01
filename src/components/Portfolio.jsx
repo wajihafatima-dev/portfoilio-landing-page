@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import {
@@ -22,11 +21,10 @@ import { PORTFOLIO_PROJECTS } from "../constent/Constent";
 
 export default function Portfolio() {
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+   const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Box id="portfolio" sx={{ py: 10, px: { xs: 2, sm: 4, md: 6 }, bgcolor: "#fff" }}>
-      {/* Section Heading */}
+    <Box id="portfolio" sx={{ py: { xs: 6, md: 10 }, px: { xs: 2, sm: 4, md: 6 }, bgcolor: "#fff" }}>
       <Box textAlign="center" mb={8}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -34,7 +32,7 @@ export default function Portfolio() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <Typography variant="h4" color="primary" fontWeight="bold">
+          <Typography variant={isSmall? "h6":"h5"} color="primary" fontWeight="bold">
             My Portfolio
           </Typography>
           <Typography
@@ -46,8 +44,6 @@ export default function Portfolio() {
           </Typography>
         </motion.div>
       </Box>
-
-      {/* Projects Grid */}
       <Grid
         container
         spacing={{ xs: 3, sm: 4, md: 5 }}
@@ -87,7 +83,6 @@ export default function Portfolio() {
                   "&:hover": { boxShadow: 6 },
                 }}
               >
-                {/* Project Image */}
                 <Box
                   sx={{
                     position: "relative",
@@ -108,8 +103,6 @@ export default function Portfolio() {
                       transition: "transform 0.5s ease",
                     }}
                   />
-
-                  {/* Overlay with Buttons */}
                   <Box
                     className="overlay"
                     sx={{
@@ -157,14 +150,10 @@ export default function Portfolio() {
                     </Button>
                   </Box>
                 </Box>
-
-                {/* Card Info */}
                 <CardHeader sx={{ px: 3, pt: 3 }}>
                   <CardTitle>{project.title}</CardTitle>
                   <CardDescription>{project.description}</CardDescription>
                 </CardHeader>
-
-                {/* Tags */}
                 <CardContent sx={{ px: 3, pb: 3, mt: "auto" }}>
                   <Stack direction="row" spacing={1} flexWrap="wrap">
                     {project.tags.map((tag) => (

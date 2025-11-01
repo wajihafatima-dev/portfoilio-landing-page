@@ -1,4 +1,4 @@
-import { Code, Layers, Globe, Sparkles } from "lucide-react";
+import { Code, Layers, Globe, Sparkles, Code2, Palette, Smartphone, Zap } from "lucide-react";
 
 export const PORTFOLIO_PROJECTS = [
   {
@@ -98,3 +98,78 @@ export const SERVICES_DATA = [
     features: ["API Integration", "Database Design", "Custom Features"],
   },
 ];
+
+export const ABOUT_DATA = {
+  skills: [
+    { name: "HTML", level: 95, color: "#f97316" },
+    { name: "CSS", level: 90, color: "#3b82f6" },
+    { name: "JavaScript", level: 90, color: "#facc15" },
+    { name: "React.js", level: 95, color: "#06b6d4" },
+    { name: "Tailwind", level: 80, color: "#b8b514" },
+  ],
+
+  skills2: [
+    { name: "Bootstrap", level: 80, color: "#f33030" },
+    { name: "MUI", level: 90, color: "#2fb814" },
+    { name: "Redux", level: 90, color: "#14b8a6" },
+    { name: "Next.js", level: 95, color: "#b81481" },
+    { name: "React Query", level: 80, color: "#b8142a" },
+  ],
+
+  tools: [
+    {
+      icon: Code2,
+      name: "Clean Code",
+      description: "Writing maintainable and scalable code",
+    },
+    {
+      icon: Palette,
+      name: "UI/UX Design",
+      description: "Creating beautiful user experiences with figma designs",
+    },
+    {
+      icon: Smartphone,
+      name: "Responsive",
+      description: "Mobile-first design approach  sbdadjasdjashdjakjsdhkajs",
+    },
+    {
+      icon: Zap,
+      name: "Performance",
+      description: "Optimized for speed and efficiency",
+    },
+  ],
+};
+export const HERO_DATA = {
+  id: "home",
+  backgroundImage:
+    "https://images.unsplash.com/photo-1630283017802-785b7aff9aac?auto=format&fit=crop&w=1920&q=80",
+  overlay:
+    "linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.5))",
+
+  title: "Welcome to my portfolio",
+  heading: {
+    intro: "Hi, I'm",
+    name: "Wajiha Mukhtar",
+    role: "Frontend Developer",
+  },
+  description:
+    "I build responsive & modern web applications with clean code and beautiful designs. Transforming ideas into digital reality.",
+
+  buttons: [
+    {
+      label: "View Portfolio",
+      sectionId: "portfolio",
+      variant: "contained",
+      color: "emerald",
+      icon: "ArrowRight", 
+    },
+    {
+      label: "My Resume",
+      href: "/assets/wajiha_cv.pdf",
+      download: "myResume.pdf",
+      variant: "outlined",
+      color: "gradient",
+      icon: "SaveAltOutlinedIcon",
+    },
+  ],
+};

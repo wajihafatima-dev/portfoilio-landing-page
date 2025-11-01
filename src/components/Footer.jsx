@@ -16,7 +16,7 @@ export default function Footer() {
       sx={{
         bgcolor: "#1f2937", // dark gray
         color: "#d1d5db", // light gray
-        py: 10,
+        py: 3,
         px: { xs: 4, md: 10 },
       }}
     >
@@ -105,7 +105,7 @@ export default function Footer() {
         </Box>
       </Box>
 
-      <Divider sx={{ bgcolor: "gray.700", mb: 4 }} />
+      <Divider sx={{ bgcolor: "gray.700", mb: 2 }} />
 
       {/* Footer Bottom */}
       <Stack

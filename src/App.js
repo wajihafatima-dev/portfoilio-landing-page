@@ -1,5 +1,7 @@
 import About from './components/About';
+import AddForm from './components/AddForm';
 import Contact from './components/Contact';
+import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
@@ -8,13 +10,13 @@ import Services from './components/Services';
 function App() {
   return (
     <>
-     <Header/>
+      <Header/>
      <Hero/>
      <About/>
      <Portfolio/>
      <Services/>
      <Contact/>
-     <Footer/>
+     <Footer/> 
     </>
   );
 }

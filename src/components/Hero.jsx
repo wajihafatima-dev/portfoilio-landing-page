@@ -1,9 +1,10 @@
 "use client";
-import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import SaveAltOutlinedIcon from "@mui/icons-material/SaveAltOutlined";
 import { Box, Typography, Container, Stack } from "@mui/material";
 import { Button } from "./ui/Button";
+import { HERO_DATA } from "../constent/Constent";
 
 export function Hero() {
   const scrollToSection = (id) => {
@@ -11,62 +12,32 @@ export function Hero() {
     if (element) element.scrollIntoView({ behavior: "smooth" });
   };
 
+  const { id, backgroundImage, overlay, title, heading, description, buttons } =
+    HERO_DATA;
+
   return (
     <Box
       component="section"
-      id="home"
+      id={id}
       sx={{
         position: "relative",
         minHeight: "100vh",
         display: "flex",
         alignItems: "center",
         overflow: "hidden",
-        bgcolor: "black",
+        backgroundColor: "black",
       }}
     >
       <Box sx={{ position: "absolute", inset: 0, zIndex: 0 }}>
-        <Box component={'img'}
-          src="https://images.unsplash.com/photo-1630283017802-785b7aff9aac?auto=format&fit=crop&w=1920&q=80"
-          alt="Background"
-          sx={{width:"100%",height:"100%" ,objectFit:"cover"}}
-        />
         <Box
-          sx={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.5))",
-          }}
+          component="img"
+          src={backgroundImage}
+          alt="Background"
+          sx={{ width: "100%", height: "100%", objectFit: "cover" }}
         />
+        <Box sx={{ position: "absolute", inset: 0, background: overlay }} />
       </Box>
-      <motion.div
-        style={{
-          position: "absolute",
-          top: 80,
-          left: 40,
-          width: 80,
-          height: 80,
-          borderRadius: "50%",
-          background: "rgba(16, 185, 129, 0.2)",
-          filter: "blur(30px)",
-        }}
-        animate={{ y: [0, 30, 0], scale: [1, 1.2, 1] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        style={{
-          position: "absolute",
-          bottom: 80,
-          right: 80,
-          width: 130,
-          height: 130,
-          borderRadius: "50%",
-          background: "rgba(59,130,246,0.2)",
-          filter: "blur(30px)",
-        }}
-        animate={{ y: [0, -40, 0], scale: [1, 1.3, 1] }}
-        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-      />
+
       <Container
         sx={{ position: "relative", zIndex: 1, py: { xs: 10, md: 20 } }}
       >
@@ -80,7 +51,7 @@ export function Hero() {
               sx={{ color: "primary.main", mb: 2, fontWeight: 500 }}
               variant="subtitle1"
             >
-              Welcome to my portfolio
+              {title}
             </Typography>
 
             <Typography
@@ -93,90 +64,80 @@ export function Hero() {
                 fontSize: { xs: "2rem", md: "3.5rem" },
               }}
             >
-              Hi, I&apos;m{" "}
+              {heading.intro}{" "}
               <Box component="span" sx={{ color: "primary.main" }}>
-                Your Name
+                {heading.name}
               </Box>
               ,<br />
-              Frontend Developer
+              {heading.role}
             </Typography>
 
             <Typography
               variant="body1"
               sx={{
                 color: "rgba(255,255,255,0.8)",
-                fontSize: "1.2rem",
+                fontSize: {xs:"0.9rem",md:"1.2rem"},
                 mb: 5,
                 maxWidth: 600,
               }}
             >
-              I build responsive & modern web applications with clean code and
-              beautiful designs. Transforming ideas into digital reality.
+              {description}
             </Typography>
 
-            <Stack direction="row" spacing={2} flexWrap="wrap">
-              <Button
-                onClick={() => scrollToSection("portfolio")}
-                className="bg-emerald-600 hover:bg-emerald-700"
-                size="large"
-                endIcon={<ArrowRight size={20} />}
-              >
-                View Portfolio
-              </Button>
-
-              <Button
-                onClick={() => scrollToSection("contact")}
-                variant="outlined"
-                sx={{
-                  borderColor: "#fff",
-                  color: "#fff",
-                  "&:hover": {
-                    bgcolor: "#f0f0f0b2",
-                    color: "#111",
-                  },
-                }}
-                size="large"
-              >
-                Contact Me
-              </Button>
+            <Stack direction="row" spacing={0} gap={3} flexWrap="wrap"  flexDirection={{xs:"column",sm:"row",md:"row"}}>
+              {buttons.map((btn, i) => {
+                if (btn.label === "View Portfolio") {
+                  return (
+                    <Button
+                      key={i}
+                      onClick={() => scrollToSection(btn.sectionId)}
+                      className="bg-emerald-600 hover:bg-emerald-700"
+                      size="large"
+                      endIcon={<ArrowRight size={20} />}
+                    >
+                      {btn.label}
+                    </Button>
+                  );
+                } else if (btn.label === "My Resume") {
+                  return (
+                    <Button
+                      key={i}
+                      variant="outlined"
+                      href={btn.href}
+                      download={btn.download}
+                      endIcon={<SaveAltOutlinedIcon />}
+                      size="large"
+                      sx={(theme) => ({
+                        color: theme.palette.primary.contrastText,
+                        border: "2px solid transparent",
+                        paddingX: { xs: 0, sm: 3, md: 4 },
+                        fontSize: { xs: 13, sm: 13, md: 14 },
+                        borderRadius: "999px",
+                        backgroundImage: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.primary.light})`,
+                        backgroundSize: "200% auto",
+                        boxShadow: `0 4px 12px ${theme.palette.primary.main}66`,
+                        transition: "all 0.4s ease-in-out",
+                        fontWeight: 600,
+                        letterSpacing: "0.5px",
+                        "&:hover": {
+                          backgroundPosition: "right center",
+                          transform: "translateY(-2px) scale(1.04)",
+                          boxShadow: `0 6px 18px ${theme.palette.primary.light}99`,
+                          color: theme.palette.secondary.contrastText,
+                          borderColor: "#fff",
+                          backgroundImage: `linear-gradient(90deg, ${theme.palette.primary.light}, ${theme.palette.primary.dark})`,
+                        },
+                      })}
+                    >
+                      {btn.label}
+                    </Button>
+                  );
+                }
+              })}
             </Stack>
           </motion.div>
         </Box>
       </Container>
-
-      {/* Scroll indicator */}
-      <motion.div
-        style={{
-          position: "absolute",
-          bottom: 32,
-          left: "50%",
-          transform: "translateX(-50%)",
-        }}
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 1.5, repeat: Infinity }}
-      >
-        <Box
-          sx={{
-            width: 24,
-            height: 40,
-            border: "2px solid rgba(255,255,255,0.5)",
-            borderRadius: "9999px",
-            display: "flex",
-            alignItems: "flex-start",
-            justifyContent: "center",
-            p: "6px",
-          }}
-        >
-          <Box
-            sx={{
-              width: 4,
-              height: 12,
-              bgcolor: "#fff",
-              borderRadius: "9999px",
-            }}
-          />
-        </Box>
-      </motion.div>
     </Box>
   );
 }
