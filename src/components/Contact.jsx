@@ -12,11 +12,24 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { Mail, MapPin, Phone, Github, Linkedin, Twitter, Send } from "lucide-react";
-import Toaster from "../components/ui/Toaster"; // ✅ import your custom Toaster component
+import {
+  Mail,
+  MapPin,
+  Phone,
+  Github,
+  Linkedin,
+  Twitter,
+  Send,
+} from "lucide-react";
+import Toaster from "../components/ui/Toaster";
+import { CONTACT_DATA } from "../constent/Constent";
 
 export default function Contact() {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
   const [toast, setToast] = useState({
     open: false,
     message: "",
@@ -37,6 +50,7 @@ export default function Contact() {
       });
       return;
     }
+
     setToast({
       open: true,
       message: "Message sent successfully! I'll get back to you soon.",
@@ -51,7 +65,14 @@ export default function Contact() {
 
   return (
     <Box id="contact" sx={{ py: { xs: 8, md: 12 } }}>
-      <Box sx={{ textAlign: "center", mb: { xs: 6, md: 10 }, px: 2 }}>
+      {/* Header */}
+      <Box
+        sx={{
+          textAlign: "center",
+          mb: { xs: 6, md: 10 },
+          px: { xs: 6, md: 4 },
+        }}
+      >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -74,27 +95,23 @@ export default function Contact() {
               fontSize: { xs: "0.9rem", md: "1rem" },
             }}
           >
-            Have a project in mind or want to collaborate? Feel free to reach out!
-            I'm always open to discussing new opportunities.
+            Have a project in mind or want to collaborate? Feel free to reach
+            out! I'm always open to discussing new opportunities.
           </Typography>
         </motion.div>
       </Box>
 
-      {/* Main Grid */}
       <Grid
         container
-        spacing={{ xs: 1, md: 4}}
+        spacing={{ xs: 2, md: 8 }}
         justifyContent="center"
         sx={{
           flexWrap: "wrap",
           mx: "auto",
-          maxWidth: "1000px",
           pb: 2,
-          px: { xs: 2, md: 4, lg: 0 },
         }}
       >
-        {/* Contact Info */}
-        <Grid size={{xs:12,sm:12,md:6}} sx={{display:"flex",justifyContent:"center",}}>
+        <Grid item xs={12} md={6} sx={{ display: "flex", justifyContent: "center" }}>
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -116,12 +133,10 @@ export default function Contact() {
                     Email
                   </Typography>
                   <Typography variant="body1" fontWeight={500}>
-                    your.email@example.com
+                    {CONTACT_DATA.email}
                   </Typography>
                 </Box>
               </Stack>
-
-              {/* Phone */}
               <Stack direction="row" spacing={2} alignItems="center">
                 <Avatar sx={{ bgcolor: "rgba(16,185,129,0.1)", color: "#059669" }}>
                   <Phone size={20} />
@@ -131,12 +146,10 @@ export default function Contact() {
                     Phone
                   </Typography>
                   <Typography variant="body1" fontWeight={500}>
-                    +1 (555) 123-4567
+                    {CONTACT_DATA.phone}
                   </Typography>
                 </Box>
               </Stack>
-
-              {/* Location */}
               <Stack direction="row" spacing={2} alignItems="center">
                 <Avatar sx={{ bgcolor: "rgba(16,185,129,0.1)", color: "#059669" }}>
                   <MapPin size={20} />
@@ -146,23 +159,21 @@ export default function Contact() {
                     Location
                   </Typography>
                   <Typography variant="body1" fontWeight={500}>
-                    San Francisco, CA
+                    {CONTACT_DATA.location}
                   </Typography>
                 </Box>
               </Stack>
             </Stack>
-
-            {/* Social Links */}
             <Box mt={5}>
               <Typography variant="subtitle1" gutterBottom fontWeight="bold">
                 Follow Me
               </Typography>
               <Stack direction="row" spacing={2}>
-                {[Github, Linkedin, Twitter].map((Icon, i) => (
+                {CONTACT_DATA.socialLinks.map((social, i) => (
                   <Box
                     key={i}
                     component="a"
-                    href="#"
+                    href={social.link}
                     target="_blank"
                     rel="noopener noreferrer"
                     sx={{
@@ -180,16 +191,14 @@ export default function Contact() {
                       },
                     }}
                   >
-                    <Icon size={20} />
+                    <social.icon size={20} />
                   </Box>
                 ))}
               </Stack>
             </Box>
           </motion.div>
         </Grid>
-
-        {/* Contact Form */}
-        <Grid size={{xs:12,sm:12,md:6}} sx={{mt:{xs:3,md:0}}}>
+        <Grid item xs={12} md={6} sx={{ mt: { xs: 3, md: 0 } }}>
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -252,8 +261,6 @@ export default function Contact() {
           </motion.div>
         </Grid>
       </Grid>
-
-      {/* ✅ Toaster at bottom-right */}
       <Toaster
         open={toast.open}
         message={toast.message}

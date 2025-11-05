@@ -1,61 +1,62 @@
+"use client";
 import React from "react";
-import { Box, Typography, Stack, IconButton, Divider, Button } from "@mui/material";
-import { Github, Linkedin, Twitter, Heart } from "lucide-react";
+import {
+  Box,
+  Typography,
+  Stack,
+  IconButton,
+  Divider,
+  Button,
+} from "@mui/material";
+import { Linkedin, Heart, Github, Twitter, Instagram } from "lucide-react";
 
 export default function Footer() {
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+    if (element) element.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <Box
       component="footer"
       sx={{
-        bgcolor: "#1f2937", // dark gray
-        color: "#d1d5db", // light gray
-        py: 3,
+        bgcolor: "#111827", // Deep dark background
+        color: "#d1d5db",
+        py: 6,
         px: { xs: 4, md: 10 },
       }}
     >
+      {/* Top Section */}
       <Box
         sx={{
           display: "grid",
           gridTemplateColumns: { xs: "1fr", md: "repeat(3, 1fr)" },
           gap: 6,
           mb: 6,
+          alignItems: "start",
         }}
       >
-        {/* Brand / About */}
+        {/* Brand Section */}
         <Box>
-          <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 2 }}>
-            <Box
-              sx={{
-                width: 40,
-                height: 40,
-                bgcolor: "#10b981",
-                borderRadius: 2,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "#fff",
-                fontWeight: "bold",
-              }}
-            >
-              YN
-            </Box>
-            <Typography variant="h6" fontWeight="bold">
-              Your Name
-            </Typography>
-          </Box>
-          <Typography variant="body2" color="gray.400">
-            Building beautiful web experiences with modern technologies and clean code.
+          <Typography
+            variant="h5"
+            color="#10b981"
+            sx={{ fontWeight: "bold", mb: 1 }}
+          >
+            Wajiha<span style={{ color: "#d1d5db" }}>Dev</span>
+          </Typography>
+          <Typography variant="body2" color="grey.400" mb={2}>
+            Frontend Developer crafting modern, responsive & interactive web
+            experiences.
+          </Typography>
+          <Typography
+            variant="body2"
+            color="grey.500"
+            sx={{ fontSize: "0.85rem" }}
+          >
+            Karachi, Pakistan
           </Typography>
         </Box>
-
-        {/* Quick Links */}
         <Box>
           <Typography variant="h6" color="white" mb={2}>
             Quick Links
@@ -68,8 +69,10 @@ export default function Footer() {
                 sx={{
                   textTransform: "none",
                   color: "#d1d5db",
-                  justifyContent: "flex-start",
-                  "&:hover": { color: "#10b981" },
+                  justifyContent: "center",
+                  fontSize: "0.85rem",
+                  "&:hover": { color: "#10b981", pl: 0 },
+                  transition: "0.3s ease",
                 }}
               >
                 {link}
@@ -77,51 +80,62 @@ export default function Footer() {
             ))}
           </Stack>
         </Box>
-
-        {/* Social Links */}
         <Box>
           <Typography variant="h6" color="white" mb={2}>
             Follow Me
           </Typography>
           <Stack direction="row" spacing={2}>
-            {[Github, Linkedin, Twitter].map((Icon, i) => (
+            {[
+              {
+                icon: <Linkedin size={20} />,
+                link: "https://www.linkedin.com/in/wajiha-fatima-b42497346",
+              },
+              { icon: <Github size={20} />, link: "#" },
+            ].map((item, i) => (
               <IconButton
                 key={i}
                 component="a"
-                href="#"
+                href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
                 sx={{
-                  bgcolor: "#374151",
+                  bgcolor: "#1f2937",
                   color: "#d1d5db",
-                  "&:hover": { bgcolor: "#10b981", color: "#fff", transform: "scale(1.1)" },
-                  transition: "0.3s",
+                  "&:hover": {
+                    bgcolor: "#10b981",
+                    color: "#fff",
+                    transform: "scale(1.15)",
+                  },
+                  transition: "all 0.3s ease",
                 }}
               >
-                <Icon size={20} />
+                {item.icon}
               </IconButton>
             ))}
           </Stack>
         </Box>
       </Box>
 
-      <Divider sx={{ bgcolor: "gray.700", mb: 2 }} />
-
-      {/* Footer Bottom */}
+      <Divider sx={{ bgcolor: "grey.800", mb: 3 }} />
       <Stack
         direction={{ xs: "column", md: "row" }}
         justifyContent="space-between"
         alignItems="center"
+        spacing={1}
       >
-        <Typography variant="body2" color="gray.400">
-          © {new Date().getFullYear()} Your Name. All rights reserved.
-        </Typography>
         <Stack direction="row" spacing={1} alignItems="center">
-          <Typography variant="body2" color="gray.400">
+          <Typography variant="body2" color="grey.400">
             Made with
           </Typography>
           <Heart size={16} color="#ef4444" />
+          <Typography variant="body2" color="grey.400">
+            by Wajiha Fatima
+          </Typography>
         </Stack>
+
+        <Typography variant="body2" sx={{pl:{xs:2,md:0}}} color="grey.600">
+          © {new Date().getFullYear()} WajihaDev. All rights reserved.
+        </Typography>
       </Stack>
     </Box>
   );

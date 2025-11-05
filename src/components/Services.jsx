@@ -21,7 +21,7 @@ export default function Services() {
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
   return (
-    <Box id="services" sx={{ py: { xs: 6, md: 10 }, px: { xs: 2, md: 6 }, bgcolor: "#f9fafb" }}>
+    <Box id="services" sx={{ py: { xs: 4, md: 10 }, px: { xs: 2, md: 6 }, bgcolor: "#f9fafb" }}>
       {/* Heading */}
       <Box sx={{ textAlign: "center", mb: { xs: 5, md: 8 } }}>
         <motion.div

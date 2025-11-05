@@ -21,10 +21,17 @@ import { PORTFOLIO_PROJECTS } from "../constent/Constent";
 
 export default function Portfolio() {
   const theme = useTheme();
-   const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
+  const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Box id="portfolio" sx={{ py: { xs: 6, md: 10 }, px: { xs: 2, sm: 4, md: 6 }, bgcolor: "#fff" }}>
+    <Box
+      id="portfolio"
+      sx={{
+        py: { xs: 4, md: 10 },
+        px: { xs: 2, sm: 4, md: 6 },
+        bgcolor: "#fff",
+      }}
+    >
       <Box textAlign="center" mb={8}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -32,7 +39,11 @@ export default function Portfolio() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <Typography variant={isSmall? "h6":"h5"} color="primary" fontWeight="bold">
+          <Typography
+            variant={isSmall ? "h6" : "h5"}
+            color="primary"
+            fontWeight="bold"
+          >
             My Portfolio
           </Typography>
           <Typography
@@ -44,11 +55,7 @@ export default function Portfolio() {
           </Typography>
         </motion.div>
       </Box>
-      <Grid
-        container
-        spacing={{ xs: 3, sm: 4, md: 5 }}
-        justifyContent="center"
-      >
+      <Grid container spacing={{ xs: 3, sm: 4, md: 5 }} justifyContent="center">
         {PORTFOLIO_PROJECTS.map((project, index) => (
           <Grid
             item
@@ -74,7 +81,7 @@ export default function Portfolio() {
                 sx={{
                   width: "100%",
                   maxWidth: 400,
-                  height: { xs: "auto", md: 420 },
+                  pb: 5,
                   overflow: "hidden",
                   position: "relative",
                   display: "flex",
@@ -150,18 +157,23 @@ export default function Portfolio() {
                     </Button>
                   </Box>
                 </Box>
-                <CardHeader sx={{ px: 3, pt: 3 }}>
-                  <CardTitle>{project.title}</CardTitle>
-                  <CardDescription>{project.description}</CardDescription>
+                <CardHeader sx={{ px: 3, pt: 2 }}>
+                  <CardTitle sx={{ fontSize: { xs: "1.3rem", md: "1.6rem" } }}>
+                    {project.title}
+                  </CardTitle>
+                  <CardDescription
+                    sx={{ fontSize: { xs: "0.9rem", md: "1rem" } }}
+                  >
+                    {project.description}
+                  </CardDescription>
                 </CardHeader>
-                <CardContent sx={{ px: 3, pb: 3, mt: "auto" }}>
+                <CardContent sx={{ px: 3, mt: 2 }}>
                   <Stack direction="row" spacing={1} flexWrap="wrap">
                     {project.tags.map((tag) => (
                       <Box
                         key={tag}
                         sx={{
                           px: 1.5,
-                          mt: 1,
                           bgcolor: "#ECFDF5",
                           color: "#059669",
                           borderRadius: "8px",

@@ -17,7 +17,7 @@ export default function About() {
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
   return (
-    <Box id="about" sx={{ py: { xs: 3, md: 10 }, bgcolor: "#fff" }}>
+    <Box id="about" sx={{ py: { xs: 4, md: 10 }, px: { xs: 2, md: 4 } }}>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -41,14 +41,14 @@ export default function About() {
           sx={{
             maxWidth: "650px",
             mx: "auto",
-            mb: 8,
+            mb: 4,
             fontSize: "1rem",
             lineHeight: 1.7,
           }}
         >
-          I'm a passionate frontend developer with a keen eye for design and a
-          love for creating seamless user experiences. With expertise in modern
-          web technologies, I bring ideas to life through code.
+          I’m a passionate frontend developer who loves transforming ideas into
+          visually appealing and fully responsive web experiences. With a strong
+          eye for detail and a commitment to clean, efficient code with solutions & functionality.
         </Typography>
       </motion.div>
       <Grid
@@ -59,8 +59,6 @@ export default function About() {
           flexWrap: "wrap",
           mx: "auto",
           maxWidth: "1000px",
-          pb: 2,
-          px: { xs: 2, md: 4, lg: 0 },
         }}
       >
         <Grid size={{ xs: 12, md: 6 }}>
@@ -139,7 +137,7 @@ export default function About() {
             </Box>
           ))}
         </Grid>
-        <Container maxWidth={"lg"} xs={12} sm={6} sx={{ px: { xs: 1, md: 0 } }}>
+        <Container xs={12} sm={6}>
           <Typography
             variant="h6"
             sx={{ mb: 3, fontWeight: 600 }}
@@ -147,7 +145,7 @@ export default function About() {
           >
             What I Do
           </Typography>
-          <Grid container spacing={2}>
+          <Grid container spacing={2} sx={{ justifyContent: "center" }}>
             {ABOUT_DATA.tools.map((tool, index) => (
               <Grid item xs={12} key={tool.name}>
                 <motion.div
@@ -163,9 +161,7 @@ export default function About() {
                       border: "1px solid #e5e7eb",
                       borderRadius: 2,
                       textAlign: "center",
-                      maxWidth: {xs:280,md:280},
-                      // minHeight:"23vh",
-                      // height:"100%",
+                      maxWidth: { xs: 280, md: 280 },
                       transition: "0.3s",
                       "&:hover": {
                         boxShadow: "0px 4px 10px rgba(0,0,0,0.05)",
@@ -182,7 +178,7 @@ export default function About() {
                     <Typography
                       variant="body2"
                       color="text.secondary"
-                      sx={{ mt: 0.5, fontSize: "0.85rem"}}
+                      sx={{ mt: 0.5, fontSize: "0.85rem" }}
                     >
                       {tool.description}
                     </Typography>
