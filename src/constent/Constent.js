@@ -8,9 +8,7 @@ import {
   Smartphone,
   Zap,
   GitBranch,
-  Twitter,
   Linkedin,
-  Github,
 } from "lucide-react";
 
 export const PORTFOLIO_PROJECTS = [
