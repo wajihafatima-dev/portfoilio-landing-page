@@ -200,14 +200,14 @@ export const HERO_DATA = {
       color: "emerald",
       icon: "ArrowRight",
     },
-    {
-      label: "My Resume",
-      href: "/",
-      download: "myResume.pdf",
-      variant: "outlined",
-      color: "gradient",
-      icon: "SaveAltOutlinedIcon",
-    },
+    // {
+    //   label: "My Resume",
+    //   href: "/",
+    //   download: "myResume.pdf",
+    //   variant: "outlined",
+    //   color: "gradient",
+    //   icon: "SaveAltOutlinedIcon",
+    // },
   ],
 };
 export const CONTACT_DATA = {
