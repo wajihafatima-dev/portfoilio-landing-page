@@ -90,7 +90,7 @@ export function Hero() {
               gap={2}
               flexWrap="wrap"
               alignItems="center"
-              justifyContent="center"
+              justifyContent="left"
             >
               {buttons.map((btn, i) => {
                 if (btn.label === "View Portfolio") {
