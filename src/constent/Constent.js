@@ -201,15 +201,7 @@ export const HERO_DATA = {
       variant: "contained",
       color: "emerald",
       icon: "ArrowRight",
-    },
-    {
-      label: "My Resume",
-      href: "/assets/wajiha_cv.pdf",
-      download: "myResume.pdf",
-      variant: "outlined",
-      color: "gradient",
-      icon: "SaveAltOutlinedIcon",
-    },
+    }
   ],
 };
 export const CONTACT_DATA = {
