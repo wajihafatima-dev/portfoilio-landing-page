@@ -76,7 +76,7 @@ export function Hero() {
               variant="body1"
               sx={{
                 color: "rgba(255,255,255,0.8)",
-                fontSize: {xs:"0.9rem",md:"1.2rem"},
+                fontSize: { xs: "0.9rem", md: "1.2rem" },
                 mb: 5,
                 maxWidth: 600,
               }}
@@ -84,16 +84,35 @@ export function Hero() {
               {description}
             </Typography>
 
-            <Stack direction="row" spacing={0} gap={3} flexWrap="wrap"  flexDirection={{xs:"column",sm:"row",md:"row"}}>
+            <Stack
+              direction={{ xs: "column", sm: "row" }}
+              spacing={2}
+              gap={2}
+              flexWrap="wrap"
+              alignItems="center"
+              justifyContent="center"
+            >
               {buttons.map((btn, i) => {
                 if (btn.label === "View Portfolio") {
                   return (
                     <Button
                       key={i}
                       onClick={() => scrollToSection(btn.sectionId)}
-                      className="bg-emerald-600 hover:bg-emerald-700"
+                      variant="contained"
                       size="large"
                       endIcon={<ArrowRight size={20} />}
+                      sx={{
+                        backgroundColor: "#059669",
+                        "&:hover": {
+                          backgroundColor: "#047857",
+                          transform: "translateY(-2px)",
+                          transition: "all 0.3s ease",
+                        },
+                        fontWeight: 600,
+                        borderRadius: "999px",
+                        px: { xs: 2, sm: 3, md: 4 },
+                        fontSize: { xs: 13, sm: 14 },
+                      }}
                     >
                       {btn.label}
                     </Button>
@@ -110,8 +129,8 @@ export function Hero() {
                       sx={(theme) => ({
                         color: theme.palette.primary.contrastText,
                         border: "2px solid transparent",
-                        paddingX: { xs: 0, sm: 3, md: 4 },
-                        fontSize: { xs: 13, sm: 13, md: 14 },
+                        px: { xs: 2, sm: 3, md: 4 },
+                        fontSize: { xs: 13, sm: 14 },
                         borderRadius: "999px",
                         backgroundImage: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.primary.light})`,
                         backgroundSize: "200% auto",
@@ -133,6 +152,8 @@ export function Hero() {
                     </Button>
                   );
                 }
+
+                return null;
               })}
             </Stack>
           </motion.div>

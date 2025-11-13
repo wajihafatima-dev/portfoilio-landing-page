@@ -16,9 +16,6 @@ import {
   Mail,
   MapPin,
   Phone,
-  Github,
-  Linkedin,
-  Twitter,
   Send,
 } from "lucide-react";
 import Toaster from "../components/ui/Toaster";

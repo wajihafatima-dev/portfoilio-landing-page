@@ -8,7 +8,7 @@ import {
   Divider,
   Button,
 } from "@mui/material";
-import { Linkedin, Heart, Github, Twitter, Instagram } from "lucide-react";
+import { Linkedin, Heart, Github } from "lucide-react";
 
 export default function Footer() {
   const scrollToSection = (id) => {

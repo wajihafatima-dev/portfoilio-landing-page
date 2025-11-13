@@ -1,5 +1,4 @@
-import React from "react";
-import { Paper, Box, Typography, Stack } from "@mui/material";
+import { Paper, Box, Typography } from "@mui/material";
 
 // Main Card wrapper
 function Card({ children, elevation = 1, className, ...props }) {
